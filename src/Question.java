@@ -1,26 +1,23 @@
+import java.util.ArrayList;
+
 public abstract class Question {
 
-    private String questionText;
-    private int pointValue;
+    private String prompt;
+    protected ArrayList<String> options;
 
-    public Question(String questionText, int pointValue) {
-        this.questionText = questionText;
-        this.pointValue = pointValue;
+    public Question(String prompt) {
+        this.prompt = prompt;
+        this.options = new ArrayList<>();
     }
 
-    public int getPointValue() {
-        return pointValue;
+    public abstract boolean isCorrect(String answer);
+
+    public void displayPromptAndOption() {
+        System.out.println(prompt);
+        int optionNumber = 1;
+        for (String option : options) {
+            System.out.println(optionNumber + ": " + option);
+            optionNumber++;
+        }
     }
-
-    public void setPointValue(int pointValue) {
-        this.pointValue = pointValue;
-    }
-
-    public void displayQuestion() {
-        System.out.println(questionText);
-    }
-
-    public abstract void displayAnswers();
-
-    public abstract int getScore();
 }
